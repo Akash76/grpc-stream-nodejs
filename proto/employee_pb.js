@@ -1,4 +1,4 @@
-// source: proto/employee.proto
+// source: employee.proto
 /**
  * @fileoverview
  * @enhanceable

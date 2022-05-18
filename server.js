@@ -22,7 +22,6 @@ function paySalary(call) {
             );
             reply.setMessage(responseMessage);
             call.write(reply)
-            // call.write({ message: responseMessage });
         } else {
             responseMessage = "Employee with Id " + employeeId + " not found in record",
             reply.setMessage(responseMessage);

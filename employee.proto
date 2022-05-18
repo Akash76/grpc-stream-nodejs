@@ -14,5 +14,5 @@ message EmployeeResponse {
     string message = 1;
 }
 
-// protoc --js_out=import_style=commonjs,binary:. .\proto\employee.proto
-// grpc_tools_node_protoc --grpc_out=grpc_js:. .\proto\employee.proto
+// protoc --js_out=import_style=commonjs,binary:./proto .\employee.proto
+// grpc_tools_node_protoc --grpc_out=grpc_js:./proto .\employee.proto
