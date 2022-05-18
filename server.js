@@ -15,18 +15,13 @@ function paySalary(call) {
 
         let responseMessage
         if (employee != null) {
-            responseMessage = "Salary paid for ".concat(
-                employee.firstName,
-                ", ",
-                employee.lastName
-            );
-            reply.setMessage(responseMessage);
-            call.write(reply)
+            responseMessage = "Salary paid for ".concat(employee.firstName, ", ", employee.lastName);
         } else {
-            responseMessage = "Employee with Id " + employeeId + " not found in record",
-            reply.setMessage(responseMessage);
-            call.write(reply)
+            responseMessage = "Employee with Id " + employeeId + " not found in record";
         }
+
+        reply.setMessage(responseMessage);
+        call.write(reply)
     });
 
     call.end();
