@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/employeepb";
+
+package employee;
+
+service Employee {
+    rpc PaySalary(EmployeeRequest) returns (EmployeeResponse) {};
+}
+
+message EmployeeRequest {
+    int32 employeeIdList = 1;
+}
+
+message EmployeeResponse {
+    string message = 1;
+}
+
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative .\proto\employee.proto
+// grpc_tools_node_protoc --grpc_out=grpc_js:. .\proto\employee.proto 
+// protoc --js_out=import_style=commonjs,binary:. .\proto\employee.proto

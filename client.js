@@ -2,26 +2,16 @@ const grpc = require('@grpc/grpc-js');
 let messages = require("./proto/employee_pb");
 let services = require("./proto/employee_grpc_pb");
 
-function main() {
-    let client = new services.EmployeeClient('localhost:4500', grpc.credentials.createInsecure());
-    let employeeIdList = [1, 10, 2];
+async function main() {
+    let client = new services.EmployeeClient('localhost:50051', grpc.credentials.createInsecure());
+    let employeeId = 1;
     let request = new messages.EmployeeRequest();
+    request.setEmployeeidlist(employeeId);
 
-    request.setEmployeeidlistList(employeeIdList);
-    let call = client.paySalary(request)
-    call.on('data', (response) => {
-        console.log(response.array);
-    });
-
-    call.on('end', function () {
-        console.log('All Salaries have been paid');
+    client.paySalary(request, (res, err) => {
+        console.log(err)
         process.exit(1)
-    });
-
-    call.on('error', (err) => {
-        console.log("Error:", err.message)
     })
-
 }
 
 main();

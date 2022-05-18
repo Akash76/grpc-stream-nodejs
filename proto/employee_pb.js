@@ -1,4 +1,4 @@
-// source: employee.proto
+// source: proto/employee.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -28,7 +28,7 @@ goog.exportSymbol('proto.employee.EmployeeResponse', null, global);
  * @constructor
  */
 proto.employee.EmployeeRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.employee.EmployeeRequest.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.employee.EmployeeRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -59,13 +59,6 @@ if (goog.DEBUG && !COMPILED) {
    */
   proto.employee.EmployeeResponse.displayName = 'proto.employee.EmployeeResponse';
 }
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.employee.EmployeeRequest.repeatedFields_ = [1];
 
 
 
@@ -98,7 +91,7 @@ proto.employee.EmployeeRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.employee.EmployeeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    employeeidlistList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    employeeidlist: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -136,10 +129,8 @@ proto.employee.EmployeeRequest.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addEmployeeidlist(values[i]);
-      }
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setEmployeeidlist(value);
       break;
     default:
       reader.skipField();
@@ -170,9 +161,9 @@ proto.employee.EmployeeRequest.prototype.serializeBinary = function() {
  */
 proto.employee.EmployeeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEmployeeidlistList();
-  if (f.length > 0) {
-    writer.writePackedInt32(
+  f = message.getEmployeeidlist();
+  if (f !== 0) {
+    writer.writeInt32(
       1,
       f
     );
@@ -181,39 +172,20 @@ proto.employee.EmployeeRequest.serializeBinaryToWriter = function(message, write
 
 
 /**
- * repeated int32 employeeIdList = 1;
- * @return {!Array<number>}
+ * optional int32 employeeIdList = 1;
+ * @return {number}
  */
-proto.employee.EmployeeRequest.prototype.getEmployeeidlistList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
-};
-
-
-/**
- * @param {!Array<number>} value
- * @return {!proto.employee.EmployeeRequest} returns this
- */
-proto.employee.EmployeeRequest.prototype.setEmployeeidlistList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
+proto.employee.EmployeeRequest.prototype.getEmployeeidlist = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @param {number=} opt_index
  * @return {!proto.employee.EmployeeRequest} returns this
  */
-proto.employee.EmployeeRequest.prototype.addEmployeeidlist = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.employee.EmployeeRequest} returns this
- */
-proto.employee.EmployeeRequest.prototype.clearEmployeeidlistList = function() {
-  return this.setEmployeeidlistList([]);
+proto.employee.EmployeeRequest.prototype.setEmployeeidlist = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 

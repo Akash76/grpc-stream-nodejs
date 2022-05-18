@@ -2,38 +2,38 @@
 
 'use strict';
 var grpc = require('@grpc/grpc-js');
-var employee_pb = require('./employee_pb.js');
+var proto_employee_pb = require('../proto/employee_pb.js');
 
 function serialize_employee_EmployeeRequest(arg) {
-  if (!(arg instanceof employee_pb.EmployeeRequest)) {
+  if (!(arg instanceof proto_employee_pb.EmployeeRequest)) {
     throw new Error('Expected argument of type employee.EmployeeRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_employee_EmployeeRequest(buffer_arg) {
-  return employee_pb.EmployeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+  return proto_employee_pb.EmployeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_employee_EmployeeResponse(arg) {
-  if (!(arg instanceof employee_pb.EmployeeResponse)) {
+  if (!(arg instanceof proto_employee_pb.EmployeeResponse)) {
     throw new Error('Expected argument of type employee.EmployeeResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_employee_EmployeeResponse(buffer_arg) {
-  return employee_pb.EmployeeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+  return proto_employee_pb.EmployeeResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
 var EmployeeService = exports.EmployeeService = {
   paySalary: {
-    path: '/employee.Employee/paySalary',
+    path: '/employee.Employee/PaySalary',
     requestStream: false,
-    responseStream: true,
-    requestType: employee_pb.EmployeeRequest,
-    responseType: employee_pb.EmployeeResponse,
+    responseStream: false,
+    requestType: proto_employee_pb.EmployeeRequest,
+    responseType: proto_employee_pb.EmployeeResponse,
     requestSerialize: serialize_employee_EmployeeRequest,
     requestDeserialize: deserialize_employee_EmployeeRequest,
     responseSerialize: serialize_employee_EmployeeResponse,
